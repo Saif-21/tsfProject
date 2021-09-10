@@ -1,0 +1,65 @@
+<!-- - Including header file from components folder which contain (head tag and body opening tag) -->
+<%- include('./components/header') -%>
+
+    <!-- - Including navbar file from components folder -->
+    <%- include('./components/navbar') -%>
+
+        <!-- - Back to all users -->
+
+        <div class="container mt-1">
+            <a href="/" class="btn btn-dark fw-bold ">&larr; Back</a>
+        </div>
+
+
+
+
+        <!-- - add details -->
+
+        <div class="container mt-3 custom_details_container w-50">
+            <!-- - Alert msg -->
+            <% if(msg !="" ){%>
+                <div class="alert alert-success text-center " role="alert" id="addMsg">
+
+                    <%=msg %>
+                </div>
+
+
+                <%} %>
+                    <div class="container mt-3 ">
+                        <h3 class="text-light bg-dark fw-bold p-2">Add User</h3>
+
+                        <!-- - ADD User Form -->
+                        <form action="/add" method="POST">
+                            <div class="form-group mt-3">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text" class="form-control" aria-describedby="emailHelp"
+                                    placeholder="Enter Name" name="userName">
+                            </div>
+
+
+                            <div class="form-group mt-3">
+                                <label for="exampleInputPassword1">Email Address</label>
+                                <input type="email" class="form-control" placeholder="Enter Email" name="userEmail">
+                            </div>
+
+                            <!-- <div class="form-group">
+                    <label for="exampleInputPassword1">Account Number</label>
+                    <input type="email" class="form-control" placeholder="Enter Account No.">
+                </div> -->
+
+                            <div class="form-group mt-3">
+                                <label for="exampleInputPassword1">Amount</label>
+                                <input type="number" class="form-control" placeholder="Enter Amount" name="userAmount">
+                            </div>
+
+
+                            <button type="submit" class="btn btn-dark mt-3">Submit</button>
+                        </form>
+                    </div>
+
+
+        </div>
+
+
+        <!-- - Including footer file from component folder which contain (body closing tag) -->
+        <%- include('./components/footer') -%>
