@@ -81,6 +81,10 @@
             .details {
                 margin-left: 0;
             }
+
+            .cus_foot {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -194,6 +198,29 @@
         </div>
 
 
+        <footer class="page-footer font-small blue bg-dark cus_foot">
 
-        <!-- - Including footer file from component folder which contain (body closing tag) -->
-        <%- include('./components/footer') -%>
+
+            <div class="footer-copyright text-center py-3 text-light  ">© 2021 Copyright:
+                <a href="#" class="text-light"> Banking System</a>
+            </div>
+
+
+        </footer>
+
+
+
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+
+        <script>
+            let alert = document.getElementById('addMsg');
+            setTimeout(() => {
+                alert.style.visibility = "hidden"
+            }, 2000)
+        </script>
+</body>
+<!-- - Including footer file from component folder which contain (body closing tag) -->
+<!--  include('./components/footer')  -->
