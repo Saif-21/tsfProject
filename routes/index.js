@@ -13,6 +13,11 @@ router.get('/', (req, res) => {
     res.sendFile('index.html')
 });
 
+//- About Route
+router.get('/about', (req, res) => {
+    res.render('about', { title: "About" })
+});
+
 
 //- Add User Router
 router.get('/addUser', (req, res) => {
@@ -56,8 +61,8 @@ router.get('/data', (req, res) => {
 
 
 //- View and transfer Route
-router.get('/view/:id?', (req, res) => {
-    const id = req.params.id;
+router.get('/view/:id', (req, res) => {
+    const id = req.params.id
 
     Promise.all([User.find({ "_id": id }), User.find()]).then(([userResult, allUserResult]) => {
         res.status(200).render('viewUser', { title: 'User Details', records: userResult, data: allUserResult });
@@ -68,7 +73,7 @@ router.get('/view/:id?', (req, res) => {
 });
 
 //- Delete User
-router.get('/delete/:id?', (req, res) => {
+router.get('/delete/:id', (req, res) => {
     const id = req.params.id;
     const updatedUser = User.findByIdAndDelete({ "_id": id });
 
@@ -82,7 +87,7 @@ router.get('/delete/:id?', (req, res) => {
 })
 
 //- Delete History
-router.get('/historydelete/:id?', (req, res) => {
+router.get('/historydelete/:id', (req, res) => {
     const id = req.params.id;
     const updatedhistory = history.findByIdAndDelete({ "_id": id });
 
@@ -104,6 +109,10 @@ router.post('/transfer', (req, res) => {
     let reciverName = req.body.username;
     let reciverEmail = req.body.email;
     let sendAmount = req.body.amount;
+
+    if (reciverName === 'Select User' || reciverEmail === 'Select Email') {
+        res.render('success', { title: "sucess", errmsg: "Please Fill all fields!", value: "", msg: "" })
+    }
 
     //- add transaction details
     const addHistory = new history({
