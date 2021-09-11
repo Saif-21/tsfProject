@@ -20,10 +20,11 @@ router.get('/addUser', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-    const { userName, userEmail, userAmount } = req.body;
+    const { userName, userEmail, userAmount, mob } = req.body;
     const newUser = new User({
         name: userName,
         email: userEmail,
+        mob: mob,
         amount: userAmount,
     });
 
@@ -66,8 +67,33 @@ router.get('/view/:id?', (req, res) => {
     })
 });
 
+//- Delete User
+router.get('/delete/:id?', (req, res) => {
+    const id = req.params.id;
+    const updatedUser = User.findByIdAndDelete({ "_id": id });
 
+    updatedUser.exec((err, data) => {
+        if (err) { throw err }
+        else {
+            res.redirect('/data')
+        }
+    })
 
+})
+
+//- Delete History
+router.get('/historydelete/:id?', (req, res) => {
+    const id = req.params.id;
+    const updatedhistory = history.findByIdAndDelete({ "_id": id });
+
+    updatedhistory.exec((err, data) => {
+        if (err) { throw err }
+        else {
+            res.redirect('/history')
+        }
+    })
+
+})
 
 //- transfer Router
 router.post('/transfer', (req, res) => {

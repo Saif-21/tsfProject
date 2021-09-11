@@ -12,10 +12,10 @@ const userSchema = new mongoose.Schema({
     // accno: {
     //     type: Number,
     // },
-    // mob: {
-    //     type: Number,
+    mob: {
+        type: Number,
 
-    // },
+    },
     amount: {
         type: Number,
         required: true
