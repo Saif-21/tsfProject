@@ -5,19 +5,20 @@
     <%- include('./components/navbar') -%>
         <!-- - Back to all users -->
         <div class="container mt-1">
-            <a href="/" class="btn btn-dark fw-bold">&larr; Back</a>
+            <a href="/" class="btn btn-secondary fw-bold mt-2">&larr; Back</a>
         </div>
         <!-- ? Search bar -->
         <div class="container d-flex justify-content-center my-3">
             <form action="/search" method="POST" class="d-flex ">
                 <select name="option" class="form-select w-25">
 
+                    <option>All</option>
                     <option>Sender</option>
                     <option>Receiver</option>
                 </select>
 
                 <input type="text" class="form-control fw-bold text-dark mx-1 w-50" name="searchEmail"
-                    placeholder="Enter Email" required>
+                    placeholder="Enter Email">
                 <input type="submit" class="btn btn-dark" value="Search">
                 <!-- <button type="submit" class="btn btn-dark">Search</button> -->
             </form>
@@ -33,10 +34,10 @@
                     <thead class="text-light bg-dark text-center">
                         <tr>
                             <th scope="col">Sender</th>
-                            <th scope="col">Amount</th>
                             <th scope="col">Receiver</th>
+                            <th scope="col">Amount</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Remove</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -47,19 +48,21 @@
                                     <td>
                                         <%= row.semail %>
                                     </td>
+
+                                    <td>
+                                        <%= row.remail %>
+                                    </td>
+
                                     <td>
                                         <%= row.amount %>
                                     </td>
 
                                     <td>
-                                        <%= row.remail %>
-                                    </td>
-                                    <td>
                                         <%= row.date %>
                                     </td>
                                     <td>
-                                        <a href="/historydelete/<%= row._id %>" class="btn btn-dark">
-                                            <i class="fa fa-trash"></i>
+                                        <a href="/historydelete/<%= row._id %>">
+                                            <i class="fas fa-minus-circle text-danger" style="font-size: 15px;"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -67,7 +70,7 @@
                                 <%}) %>
 
                                     <%} else{%>
-                                        <tr>
+                                        <tr class="bg-warning">
                                             <td>No records found</td>
                                         </tr>
                                         <%}%>

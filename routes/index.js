@@ -21,7 +21,7 @@ router.get('/about', (req, res) => {
 
 //- Add User Router
 router.get('/addUser', (req, res) => {
-    res.render('addUser', { title: 'Add User', msg: "" })
+    res.render('addUser', { title: 'Add User', msg: "" });
 })
 
 router.post('/add', (req, res) => {
@@ -62,7 +62,7 @@ router.get('/data', (req, res) => {
 
 //- View and transfer Route
 router.get('/view/:id', (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
 
     Promise.all([User.find({ "_id": id }), User.find()]).then(([userResult, allUserResult]) => {
         res.status(200).render('viewUser', { title: 'User Details', records: userResult, data: allUserResult });
@@ -70,7 +70,9 @@ router.get('/view/:id', (req, res) => {
         console.log(err);
         res.sendStatus(500);
     })
+
 });
+
 
 //- Delete User
 router.get('/delete/:id', (req, res) => {
@@ -208,34 +210,27 @@ router.post('/search', (req, res) => {
     const option = req.body.option;
     const searchEmail = req.body.searchEmail;
 
-    if (option === "Sender") {
-        let sendHist = history.find({ "semail": searchEmail });
-        sendHist.exec((err, data) => {
-            if (err) {
-                throw err;
-            }
-            else {
-
-                res.render('transferHistory', { title: "Search Result", records: data })
-
-            }
-        })
+    if (option === 'Sender') {
+        var search = { semail: searchEmail }
     }
-    else if (option === "Reciver") {
-        let sendHist = history.find({ "remail": searchEmail });
-        sendHist.exec((err, data) => {
-            if (err) {
-                throw err;
-            }
-            else {
-
-                res.render('transferHistory', { title: "Search Result", records: data })
-
-            }
-        })
+    else if (option === "Receiver") {
+        var search = { remail: searchEmail }
     }
-
-
+    else if (option === "All") {
+        var search = {}
+    }
+    else {
+        var search = {}
+    }
+    const sendhistory = history.find(search)
+    sendhistory.exec((err, data) => {
+        if (err) {
+            throw err;
+        }
+        else {
+            res.render('transferHistory', { title: "Search Result", records: data })
+        }
+    })
 })
 
 

@@ -5,7 +5,7 @@
     <%- include('./components/navbar') -%>
         <!-- - Back to all users -->
         <div class="container mt-1">
-            <a href="/" class="btn btn-dark fw-bold">&larr; Back</a>
+            <a href="/" class="btn btn-secondary fw-bold mt-2">&larr; Back</a>
         </div>
         <!-- - All customers -->
         <div class="container my-3">
@@ -18,17 +18,14 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <!-- <th scope="col">Acc. No.</th> -->
-                            <!-- <th scope="col">Mobile</th> -->
                             <th scope="col">Amount</th>
                             <th scope="col">Action</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Remove</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         <% if(records.length> 0) {%>
                             <% records.forEach((row)=> {%>
-
                                 <tr>
                                     <td>
                                         <%= row.name%>
@@ -47,7 +44,7 @@
 
                                     </td>
                                     <td>
-                                        <a href="/delete/<%= row._id %>" class="btn btn-dark">
+                                        <a href="/delete/<%= row._id %>" class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
@@ -56,7 +53,7 @@
                                 <%}) %>
 
                                     <%} else{%>
-                                        <tr>
+                                        <tr class="bg-warning">
                                             <td>No records found</td>
                                         </tr>
                                         <%}%>
