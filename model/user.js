@@ -9,9 +9,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // accno: {
-    //     type: Number,
-    // },
     mob: {
         type: Number,
 
