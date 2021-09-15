@@ -2,12 +2,6 @@ const router = require('express').Router();
 const User = require('../model/user');
 const history = require("../model/records");
 
-
-
-
-
-
-
 //- home Route
 router.get('/', (req, res) => {
     res.sendFile('index.html')
@@ -42,8 +36,6 @@ router.post('/add', (req, res) => {
 
 })
 
-
-
 //- view all customers Route
 router.get('/data', (req, res) => {
     const userdata = User.find();
@@ -59,7 +51,6 @@ router.get('/data', (req, res) => {
 
 });
 
-
 //- View and transfer Route
 router.get('/view/:id', (req, res) => {
     const id = req.params.id;
@@ -72,7 +63,6 @@ router.get('/view/:id', (req, res) => {
     })
 
 });
-
 
 //- Delete User
 router.get('/delete/:id', (req, res) => {
